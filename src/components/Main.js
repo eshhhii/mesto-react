@@ -19,13 +19,16 @@ function Main(props) {
     api.getInitialCards().then((cardList) => {
       setCards(cardList);
     });
-  });
+  }, []);
 
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__info">
-          <div className="profile__container" onClick={props.onEditAvatar}>
+          <div
+            className="profile__container"
+            onClick={console.log(props.onEditAvatar)}
+          >
             <img
               className="profile__avatar"
               style={{ backgroundImage: `url(${userAvatar})` }}
@@ -44,7 +47,7 @@ function Main(props) {
                 type="button"
                 className="profile__edit"
                 aria-label="Изменить профиль"
-                onClick={props.onEditProfile}
+                onClick={console.log(props.onEditProfile)}
               ></button>
             </div>
             <p className="profile__job">{userDescription}</p>
@@ -57,14 +60,14 @@ function Main(props) {
           onClick={props.onAddPlace}
         />
       </section>
-      <div className="elements">
+      <section className="elements">
         <ul className="elements__list">
           {" "}
           {cards.map((card) => (
-            <Card key={card._id} card={card} />
+            <Card key={card._id} card={card} onCardClick={props.onCardClick} />
           ))}
         </ul>
-      </div>
+      </section>
     </main>
   );
 }

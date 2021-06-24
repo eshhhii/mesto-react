@@ -11,6 +11,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(false);
 
   function handleEditProfileClick() {
     setIsEditPopupOpen(true);
@@ -21,28 +22,32 @@ function App() {
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
-
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
   function closeAllPopups() {
     setIsEditPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard(false);
   }
   return (
     <div className="body">
       <div className="page">
         <Header />
-        <Main>
+        <Main
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
-          onClose={closeAllPopups}
-        </Main>
+          onCardClick={handleCardClick}
+        />
         <Footer />
       </div>
       <PopupWithForm
         name="edit"
         title="Редактировать профиль"
         isOpen={isEditPopupOpen}
+        onClose={closeAllPopups}
       >
         <input
           className="popup__input"
@@ -118,7 +123,7 @@ function App() {
         <span className="popup__error" id="newAvatar-error"></span>
       </PopupWithForm>
 
-      <ImagePopup />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
       <PopupWithForm name="delete" title="Вы уверены?">
         <button type="submit" className="popup__save">
