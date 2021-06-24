@@ -4,9 +4,7 @@ import "../index.css";
 function ImagePopup(props) {
   return (
     <section
-      className={`popup popup_images" ${
-        props.selectedCard ? "popup_opened" : ""
-      }`}
+      className={`popup popup_images" ${props.card ? "popup_is-opened" : ""}`}
     >
       <div className="popup__container popup__container_image">
         <button

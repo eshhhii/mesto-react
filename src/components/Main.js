@@ -25,13 +25,10 @@ function Main(props) {
     <main className="content">
       <section className="profile">
         <div className="profile__info">
-          <div
-            className="profile__container"
-            onClick={console.log(props.onEditAvatar)}
-          >
+          <div className="profile__container" onClick={props.onEditAvatar}>
             <img
               className="profile__avatar"
-              style={{ backgroundImage: `url(${userAvatar})` }}
+              src={`${userAvatar}`}
               alt="Аватар"
             />
             <button
@@ -47,7 +44,7 @@ function Main(props) {
                 type="button"
                 className="profile__edit"
                 aria-label="Изменить профиль"
-                onClick={console.log(props.onEditProfile)}
+                onClick={props.onEditProfile}
               ></button>
             </div>
             <p className="profile__job">{userDescription}</p>
@@ -62,7 +59,6 @@ function Main(props) {
       </section>
       <section className="elements">
         <ul className="elements__list">
-          {" "}
           {cards.map((card) => (
             <Card key={card._id} card={card} onCardClick={props.onCardClick} />
           ))}
