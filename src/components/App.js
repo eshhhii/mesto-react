@@ -1,4 +1,3 @@
-import "../index.css";
 import React from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
@@ -11,7 +10,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditProfileClick() {
     setIsEditPopupOpen(true);
@@ -46,6 +45,7 @@ function App() {
       <PopupWithForm
         name="edit"
         title="Редактировать профиль"
+        submitButton="Cохранить"
         isOpen={isEditPopupOpen}
         onClose={closeAllPopups}
       >
@@ -78,6 +78,7 @@ function App() {
       <PopupWithForm
         name="add"
         title="Новое место"
+        submitButton="Cохранить"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
       >
@@ -108,6 +109,7 @@ function App() {
       <PopupWithForm
         name="update"
         title="Обновить аватар"
+        submitButton="Cохранить"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
       >
@@ -125,11 +127,11 @@ function App() {
 
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
-      <PopupWithForm name="delete" title="Вы уверены?">
-        <button type="submit" className="popup__save">
-          Да
-        </button>
-      </PopupWithForm>
+      <PopupWithForm
+        name="delete"
+        title="Вы уверены?"
+        submitButton="Да"
+      ></PopupWithForm>
     </div>
   );
 }
