@@ -28,7 +28,7 @@ function App() {
     setIsEditPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    setSelectedCard(false);
+    setSelectedCard({});
   }
   return (
     <div className="body">

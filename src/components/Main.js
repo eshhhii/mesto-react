@@ -43,7 +43,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <main className="content">
