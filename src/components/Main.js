@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../utils/Api";
+import api from "../utils/Api.js";
 import Card from "./Card.js";
 import { СurrentUserContext } from "../contexts/CurrentUserContext.js";
 
@@ -17,6 +17,16 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         console.log(err);
       });
   }, []);
+
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
 
   return (
     <main className="content">
@@ -57,7 +67,12 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
       <section className="elements">
         <ul className="elements__list">
           {cards.map((card) => (
-            <Card key={card._id} card={card} onCardClick={onCardClick} />
+            <Card
+              key={card._id}
+              card={card}
+              onCardClick={onCardClick}
+              onCardLike={handleCardLike}
+            />
           ))}
         </ul>
       </section>

@@ -1,7 +1,7 @@
 import React from "react";
 import { СurrentUserContext } from "../contexts/CurrentUserContext.js";
 
-function Card({ card, onCardClick }) {
+function Card({ card, onCardClick, onCardLike }) {
   const currentUser = React.useContext(СurrentUserContext);
   // Определяем, являемся ли мы владельцем текущей карточки
   const isOwn = card.owner._id === currentUser._id;
@@ -16,11 +16,14 @@ function Card({ card, onCardClick }) {
 
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = `element__like ${
-    isOwn ? "element__like" : "element__like_active"
+    isLiked ? "element__like_active" : "element__like"
   }`;
 
   function handleClick() {
     onCardClick(card);
+  }
+  function handleLikeClick() {
+    onCardLike(card);
   }
   return (
     <li className="element">
@@ -39,6 +42,7 @@ function Card({ card, onCardClick }) {
         <div className="element__container">
           <button
             className={cardLikeButtonClassName}
+            onClick={handleLikeClick}
             aria-label="Лайкнуть"
           ></button>
           <p className="element__counter">{card.likes.length}</p>

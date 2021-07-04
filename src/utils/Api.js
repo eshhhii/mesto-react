@@ -90,6 +90,14 @@ class Api {
       return res.ok ? res.json() : Promise.reject(`Ошибка! ${res.status}`);
     });
   }
+  changeLikeCardStatus(id) {
+    return fetch(`${this._url}/cards/likes/${id}`, {
+      method: "PUT" || "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      return res.ok ? res.json() : Promise.reject(`Ошибка! ${res.status}`);
+    });
+  }
 }
 
 const api = new Api({
