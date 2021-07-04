@@ -72,7 +72,7 @@ class Api {
       return res.ok ? res.json() : Promise.reject(`Ошибка! ${res.status}`);
     });
   }
-
+  /*
   likeCard(id) {
     return fetch(`${this._url}/cards/likes/${id}`, {
       method: "PUT",
@@ -89,10 +89,11 @@ class Api {
     }).then((res) => {
       return res.ok ? res.json() : Promise.reject(`Ошибка! ${res.status}`);
     });
-  }
-  changeLikeCardStatus(id) {
+  }*/
+
+  changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._url}/cards/likes/${id}`, {
-      method: "PUT" || "DELETE",
+      method: isLiked ? "PUT" : "DELETE",
       headers: this._headers,
     }).then((res) => {
       return res.ok ? res.json() : Promise.reject(`Ошибка! ${res.status}`);

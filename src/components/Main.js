@@ -28,6 +28,12 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
     });
   }
 
+  function handCardDelete(card) {
+    api.deleteCard(card._id).then(() => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  }
+
   return (
     <main className="content">
       <section className="profile">
@@ -72,6 +78,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
               card={card}
               onCardClick={onCardClick}
               onCardLike={handleCardLike}
+              onCardDelete={handCardDelete}
             />
           ))}
         </ul>
