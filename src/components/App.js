@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../utils/Api";
+import api from "../utils/api";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
