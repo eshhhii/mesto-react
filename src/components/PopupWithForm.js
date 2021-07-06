@@ -7,7 +7,7 @@ function PopupWithForm({
   title,
   children,
   submitButton,
-  onSubmit,
+  handleSubmit,
 }) {
   return (
     <div className={`popup popup_${name} ${isOpen ? "popup_is-opened" : ""}`}>
@@ -22,7 +22,7 @@ function PopupWithForm({
         <form
           className={`popup__form popup__form_${name}`}
           name="form"
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit}
         >
           <fieldset className="popup__fieldset">{children}</fieldset>
           <button type="submit" className="popup__save">
