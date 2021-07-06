@@ -72,24 +72,6 @@ class Api {
       return res.ok ? res.json() : Promise.reject(`Ошибка! ${res.status}`);
     });
   }
-  /*
-  likeCard(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Ошибка! ${res.status}`);
-    });
-  }
-
-  deleteLike(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Ошибка! ${res.status}`);
-    });
-  }*/
 
   changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._url}/cards/likes/${id}`, {
