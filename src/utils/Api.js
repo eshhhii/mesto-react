@@ -4,10 +4,6 @@ class Api {
     this._headers = config.headers;
   }
 
-  getAllData() {
-    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
-  }
-
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
