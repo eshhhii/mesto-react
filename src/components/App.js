@@ -21,19 +21,25 @@ function App() {
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getUserInfo().then((cardList) => {
-      setCurrentUser(cardList).catch((err) => {
+    api
+      .getUserInfo()
+      .then((cardList) => {
+        setCurrentUser(cardList);
+      })
+      .catch((err) => {
         console.log(err);
       });
-    });
   }, []);
 
   React.useEffect(() => {
-    api.getInitialCards().then((cardList) => {
-      setCards(cardList).catch((err) => {
+    api
+      .getInitialCards()
+      .then((cardList) => {
+        setCards(cardList);
+      })
+      .catch((err) => {
         console.log(err);
       });
-    });
   }, []);
 
   function handleEditProfileClick() {
@@ -73,22 +79,37 @@ function App() {
   }
 
   function handleUpdateUser({ name, about }) {
-    api.editUserInfo(name, about).then((updatedUser) => {
-      setCurrentUser(updatedUser);
-      setIsEditProfilePopupOpen(false);
-    });
+    api
+      .editUserInfo(name, about)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        setIsEditProfilePopupOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   function handleUpdateAvatar({ avatar }) {
-    api.editUserAvatar(avatar).then((updatedUser) => {
-      setCurrentUser(updatedUser);
-      setIsEditAvatarPopupOpen(false);
-    });
+    api
+      .editUserAvatar(avatar)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        setIsEditAvatarPopupOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   function handleAddPlaceSubmit({ name, link }) {
-    api.addCard(name, link).then((newCard) => {
-      setCards([newCard, ...cards]);
-      setIsAddPlacePopupOpen(false);
-    });
+    api
+      .addCard(name, link)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        setIsAddPlacePopupOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function closeAllPopups() {

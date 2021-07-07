@@ -13,9 +13,6 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       avatar: avatarRef.current.value,
     });
   }
-  React.useEffect(() => {
-    avatarRef.current.value = currentUser.avatar;
-  }, [currentUser]);
 
   return (
     <PopupWithForm
